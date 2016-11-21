@@ -15,8 +15,8 @@ twitter.get('lists/members', {
 	twitter.stream('user', {
 		with: 'followings'
 	}).on('tweet', function (tweet) {
-		console.log('Retweeting @' + tweet.user.screen_name);
-		if (users[tweet.user.screen_name])
+		if (users[tweet.user.screen_name]) {
+			console.log('Retweeting @' + tweet.user.screen_name);
 			twitter.post(
 				'/statuses/retweet/' + tweet.id_str,
 				{},
@@ -24,6 +24,8 @@ twitter.get('lists/members', {
 					if (err)
 						console.log(err);
 				});
+		} else 
+			console.log('Ignoring @' + tweet.user.screen_name);
 	});
 
 });
