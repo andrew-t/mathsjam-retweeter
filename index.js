@@ -6,20 +6,24 @@ twitter.get('lists/members', {
 	slug: 'monthly-mathsjams',
 	owner_screen_name: 'MathsJam'
 }, function (err, data, response) {
-	console.log(data);
-	// TODO - store users
-	// users[username] = true;
-});
+	
+	data.users.forEach(function(user) {
+		users[user.screen_name] = true;
+		console.log('Following @' + user.screen_name);
+	});
 
-twitter.stream('user', {
-	with: 'followings'
-}).on('tweet', function (tweet) {
-	if (users[tweet.user.screen_name])
-		twitter.post(
-			'/statuses/retweet/' + tweet.id_str,
-			{},
-			function (err, data, response) {
-				if (err)
-					console.log(err);
-			});
+	twitter.stream('user', {
+		with: 'followings'
+	}).on('tweet', function (tweet) {
+		console.log('Retweeting @' + tweet.user.screen_name);
+		if (users[tweet.user.screen_name])
+			twitter.post(
+				'/statuses/retweet/' + tweet.id_str,
+				{},
+				function (err, data, response) {
+					if (err)
+						console.log(err);
+				});
+	});
+
 });
