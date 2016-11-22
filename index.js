@@ -7,6 +7,11 @@ twitter.get('lists/members', {
 	owner_screen_name: 'MathsJam'
 }, function (err, data, response) {
 	
+	if (err) {
+		console.dir(err, { colors: true });
+		return;
+	}
+
 	data.users.forEach(function(user) {
 		users[user.screen_name] = true;
 		console.log('Following @' + user.screen_name);
