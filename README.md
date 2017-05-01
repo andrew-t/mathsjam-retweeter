@@ -20,11 +20,12 @@ Unable to find a free retweeting service that wouldn't spam the followers, we bu
 }
 ```
 
-Then just run `node index.js`. Though I personally use:
+Then add the app to Cron using:
 
 ```
-npm install -g forever
-forever index.js
+0 5 * * 2 /usr/local/bin/node /home/pi/Mathsjam-Retweeter/index.js > /home/pi/Mathsjam-Retweeter/output.log 2> /home/pi/Mathsjam-Retweeter/error.log
 ```
 
-It will log errors in detail and any tweets it sees/retweets as single lines.
+or whatever makes sense for your setup.
+
+This causes it to run every Tuesday at 5AM. (The first MathsJam should never start before that.) A little more code is needed at the top of `index.js` to work out *which* Tuesday it is, as MathsJams only run on the second-to-last Tuesday of the month (with the odd exception in December because Christmas) and we don't want this bot to run *all* the time.
