@@ -2,21 +2,32 @@ const Twit = require('twit'),
 	twitter = new Twit(require('./creds.json')),
 	users = {};
 
-twitter.get('lists/members', {
-	slug: 'monthly-mathsjams',
-	owner_screen_name: 'MathsJam'
-}, function (err, data, response) {
-	
-	if (err) {
-		console.dir(err, { colors: true });
-		return;
-	}
-
-	data.users.forEach(function(user) {
-		users[user.screen_name] = true;
-		console.log('Following @' + user.screen_name);
+function getMembers(cursor) {
+	var opts = {
+		slug: 'monthly-mathsjams',
+		owner_screen_name: 'MathsJam',
+		count: 1000
+	};
+	if (cursor) opts.cursor = cursor;
+	twitter.get('lists/members', opts, function(err, data, response) {
+		if (err) {
+			console.dir(err, { colors: true });
+			throw new Error('Error');
+		}
+		data.users.forEach(function(user) {
+			console.log('Following @' + user.screen_name);
+			users[user.screen_name] = true;
+		});
+		if (data.cursor)
+			getMembers(cursor);
+		else
+			done();	
 	});
+}
 
+getMembers();
+
+function done() {
 	twitter.stream('user', {
 		with: 'followings'
 	}).on('tweet', function (tweet) {
@@ -32,5 +43,4 @@ twitter.get('lists/members', {
 		} else 
 			console.log('Ignoring @' + tweet.user.screen_name);
 	});
-
-});
+}
