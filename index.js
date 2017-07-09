@@ -1,10 +1,11 @@
-const Twit = require('twit'),
+var Twit = require('twit'),
 	twitter = new Twit(require('./creds.json')),
 	users = {};
 
+/*
 // Work out which Tuesday it is...
-const now = new Date();
-let nthLastTuesday = 0,
+var now = new Date(),
+	nthLastTuesday = 0,
 	now = Date.now(),
 	currentMonth = now.getMonth();
 do {
@@ -29,7 +30,11 @@ setTimeout(function() {
 	console.log('Shutting down for the night.');
 	process.exit(0);
 }, 1000 * 60 * 60 * 36);
-
+*/
+setTimeout(function() {
+	console.log('hour passed');
+	process.exit(0);
+}, 1000*60*65);
 // First, get a list of MathsJam accounts.
 getMembers();
 function getMembers(cursor) {
