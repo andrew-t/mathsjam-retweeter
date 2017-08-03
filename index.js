@@ -16,9 +16,12 @@ function getData() {
 }
 
 getData();
-setInterval(function() {
-	cp.exec('./update-git.sh', getData);
-});
+// setInterval(function() {
+// 	cp.exec('./update-git.sh', getData);
+// }, oneDay);
+setTimeout(function() {
+	process.exit(0);
+}, oneDay * 1.05);
 
 twitter.stream('user', {
 	with: 'followings'
