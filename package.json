@@ -1,7 +1,6 @@
 {
   "name": "mathsjam-retweeter",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +8,9 @@
   "author": "Andrew Taylor <andrew@andrewt.net>",
   "license": "ISC",
   "dependencies": {
+    "js-yaml": "^3.9.1",
     "twit": "^2.2.5"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
