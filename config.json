@@ -1,0 +1,6 @@
+{
+	"// comment": "This is how long (in hours) before or after the given date to retweet. Note that the after one includes all 24 hours of the date itself.",
+	"before": 24,
+	"after": 36,
+	"shutDown": 24
+}
