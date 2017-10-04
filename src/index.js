@@ -16,4 +16,4 @@ getDates()
 setTimeout(() => {
 	console.log('Shutting down for the night.');
 	process.exit(0);
-}, config * 3600000);
+}, config.shutDown * 3600000);
