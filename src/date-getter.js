@@ -20,6 +20,6 @@ module.exports = () =>
 			}))
 		.then(array => {
 			const hash = {};
-			array.forEach(jam => hash[jam.handle] = jam);
+			array.forEach(jam => hash[jam.handle.toLowerCase()] = jam);
 			return hash;
 		});

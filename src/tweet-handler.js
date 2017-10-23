@@ -10,7 +10,7 @@ module.exports = class TweetHandler {
 		this.twit.stream('user', {
 			with: 'followings'
 		}).on('tweet', tweet => {
-			const jam = jams[tweet.user.screen_name];
+			const jam = jams[tweet.user.screen_name.toLowerCase()];
 			if (!jam) {
 				console.log(`Never heard of ${tweet.user.screen_name}.`);
 				return;
