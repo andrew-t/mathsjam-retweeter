@@ -1,7 +1,7 @@
 const assert = require('assert');
 
 const jams = {
-	RealJam: {
+	realjam: {
 		name: 'A Real MathsJam',
 		handle: 'RealJam',
 		date: new Date('2017-10-10')
