@@ -1,5 +1,4 @@
-const fetch = require('isomorphic-fetch'),
-	csv = require('CSV-JS');
+const fetch = require('isomorphic-fetch');
 
 module.exports = function getDates() {
 	const hash = {};
