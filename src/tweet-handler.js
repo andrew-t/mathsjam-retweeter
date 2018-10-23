@@ -1,6 +1,6 @@
 const config = require('../config.json'),
 	h2ms = 3600000;
-const { promisify } = require('util');
+const { promisify } = require('./util');
 module.exports = class TweetHandler {
 	constructor(twit, jams, now) {
 		this.now = now;
